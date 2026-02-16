@@ -57,6 +57,12 @@ public class CryptoPriceSyncService {
             }
 
             log.info(String.format("Synced price of %s successfully", symbol));
+
+            try {
+                Thread.sleep(100); // small delay to avoid rate-limit
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
         });
     }
 
