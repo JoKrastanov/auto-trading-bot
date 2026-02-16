@@ -36,7 +36,7 @@ function CryptoSummaryItem(props: CryptoSummaryItemProps) {
         />
         <Typography variant="body1">{props.cryptoSummary.name}</Typography>
         <Typography variant="body1">
-          {props.cryptoSummary.latestPrice} USD
+          ${props.cryptoSummary.latestPrice}
         </Typography>
       </Box>
     </Link>

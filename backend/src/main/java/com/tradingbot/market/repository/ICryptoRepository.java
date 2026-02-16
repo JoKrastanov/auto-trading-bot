@@ -1,6 +1,7 @@
 package com.tradingbot.market.repository;
 
 import java.util.List;
+import com.tradingbot.market.dtos.CryptoDetails;
 import com.tradingbot.market.dtos.CryptoSummary;
 import com.tradingbot.market.models.CryptoCurrency;
 import com.tradingbot.market.models.CryptoImage;
@@ -16,6 +17,8 @@ public interface ICryptoRepository {
     boolean cryptoHasImage(String referenceId);
 
     List<CryptoSummary> findAllCryptosSummary();
+
+    CryptoDetails findCryptoById(String id);
 
     List<CryptoPrice> findPricesByCryptoId(String referenceId);
 }

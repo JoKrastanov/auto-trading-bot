@@ -2,6 +2,7 @@ package com.tradingbot.market;
 
 import java.util.List;
 import org.springframework.stereotype.Service;
+import com.tradingbot.market.dtos.CryptoDetails;
 import com.tradingbot.market.dtos.CryptoSummary;
 import com.tradingbot.market.repository.CryptoRepository;
 import lombok.RequiredArgsConstructor;
@@ -16,5 +17,10 @@ public class CryptoService {
     public List<CryptoSummary> getCryptosSummary()
     {
         return this.cryptoRepository.findAllCryptosSummary();
+    }
+
+    public CryptoDetails getCurrency(String id)
+    {
+        return this.cryptoRepository.findCryptoById(id);
     }
 }

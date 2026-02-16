@@ -1,13 +1,11 @@
 package com.tradingbot.market.repository;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
+import com.tradingbot.market.dtos.CryptoDetails;
 import com.tradingbot.market.dtos.CryptoSummary;
 import com.tradingbot.market.models.CryptoCurrency;
 import com.tradingbot.market.models.CryptoImage;
@@ -92,6 +90,50 @@ public class CryptoRepository implements ICryptoRepository {
             s.setImageData(rs.getString("image_data"));
             return s;
         });
+    }
+
+    @Override
+    public CryptoDetails findCryptoById(String id) {
+        String sql = """
+                SELECT
+                    c.reference_id,
+                    c.name,
+                    c.symbol,
+                    c.max_supply,
+                    c.circulating_supply,
+                    c.market_cap_usd,
+                    c.latest_price_usd,
+                    c.percentage_price_change_last_hour,
+                    c.percentage_price_change_last_day,
+                    c.percentage_price_change_last_week,
+                    ci.image_data
+                FROM crypto_currency c
+                LEFT JOIN crypto_image ci
+                    ON c.reference_id = ci.reference_id
+                WHERE c.reference_id = ?
+                """;
+
+        return jdbcTemplate.queryForObject(sql, (rs, rowNum) -> {
+            CryptoDetails details = new CryptoDetails();
+            details.setReferenceId(rs.getString("reference_id"));
+            details.setName(rs.getString("name"));
+            details.setSymbol(rs.getString("symbol"));
+            details.setMaxSupply(rs.getBigDecimal("max_supply"));
+            details.setCirculatingSupply(rs.getBigDecimal("circulating_supply"));
+            details.setMarketCapUsd(rs.getBigDecimal("market_cap_usd"));
+            details.setLatestPriceUsd(rs.getBigDecimal("latest_price_usd"));
+
+            details.setPercentagePriceChangeLastHour(
+                    rs.getBigDecimal("percentage_price_change_last_hour"));
+            details.setPercentagePriceChangeLastDay(
+                    rs.getBigDecimal("percentage_price_change_last_day"));
+            details.setPercentagePriceChangeLastWeek(
+                    rs.getBigDecimal("percentage_price_change_last_week"));
+
+            details.setImageData(rs.getString("image_data"));
+
+            return details;
+        }, id);
     }
 
     @Override
