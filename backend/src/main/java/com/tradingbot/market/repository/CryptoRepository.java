@@ -10,15 +10,13 @@ import com.tradingbot.market.dtos.CryptoSummary;
 import com.tradingbot.market.models.CryptoCurrency;
 import com.tradingbot.market.models.CryptoImage;
 import com.tradingbot.market.models.CryptoPrice;
+import lombok.RequiredArgsConstructor;
 
 @Repository
-public class CryptoRepository implements ICryptoRepository {
+@RequiredArgsConstructor
+public class CryptoRepository {
 
     private final JdbcTemplate jdbcTemplate;
-
-    public CryptoRepository(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
-    }
 
     public void saveCrypto(CryptoCurrency crypto) {
         String sql = """
@@ -67,13 +65,11 @@ public class CryptoRepository implements ICryptoRepository {
         jdbcTemplate.update(sql, image.getReferenceId(), image.getImageData());
     }
 
-    @Override
     public boolean cryptoHasImage(String referenceId) {
         String sql = "SELECT EXISTS (SELECT 1 FROM crypto_image WHERE reference_id = ?)";
         return jdbcTemplate.queryForObject(sql, Boolean.class, referenceId);
     }
 
-    @Override
     public List<CryptoSummary> findAllCryptosSummary() {
         String sql = """
                 SELECT c.reference_id, c.name, c.symbol, c.latest_price_usd, ci.image_data
@@ -92,7 +88,6 @@ public class CryptoRepository implements ICryptoRepository {
         });
     }
 
-    @Override
     public CryptoDetails findCryptoById(String id) {
         String sql = """
                 SELECT
@@ -134,11 +129,5 @@ public class CryptoRepository implements ICryptoRepository {
 
             return details;
         }, id);
-    }
-
-    @Override
-    public List<CryptoPrice> findPricesByCryptoId(String referenceId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findPricesByCryptoId'");
     }
 }

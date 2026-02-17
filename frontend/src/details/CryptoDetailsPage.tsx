@@ -14,7 +14,7 @@ function CryptoDetailsPage() {
   }, []);
 
   if (!crypto) {
-    return <>Crypto not found</>;
+    return <>Loading...</>;
   }
   return (
     <Card sx={{ maxWidth: 600, mx: "auto", mt: 4 }}>

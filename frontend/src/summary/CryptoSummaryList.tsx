@@ -22,7 +22,6 @@ function CryptoSummaryList() {
       <Typography variant="h2" gutterBottom>
         Crypto Dashboard
       </Typography>
-
       <Grid
         container
         spacing={2}
@@ -35,10 +34,7 @@ function CryptoSummaryList() {
         }}
       >
         {cryptos.map((crypto) => (
-          <CryptoSummaryItem
-            key={crypto.referenceId}
-            cryptoSummary={crypto}
-          />
+          <CryptoSummaryItem key={crypto.referenceId} cryptoSummary={crypto} />
         ))}
       </Grid>
     </Box>

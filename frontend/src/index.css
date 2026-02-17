@@ -1,6 +1,6 @@
 :root {
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+    color: rgba(255, 255, 255, 0.87);
+    background-color: #242424;
 }
 
 img.crypto {
@@ -8,6 +8,10 @@ img.crypto {
 }
 
 a {
-  color: rgba(255, 255, 255, 0.87);
-  text-decoration: none;
+    color: rgba(255, 255, 255, 0.87);
+    text-decoration: none;
+}
+
+input {
+    color: rgba(255, 255, 255, 0.87) !important;
 }

@@ -33,37 +33,37 @@ public class CryptoPriceSyncService {
     @Scheduled(fixedRate = 300_000)
     public void syncCryptoPrices() {
         log.info("Starting crypto price sync task");
-        List<String> ids = this.supportedCryptoService.getIds();
+        // List<String> ids = this.supportedCryptoService.getIds();
 
-        ids.forEach(id -> {
-            String symbol = this.supportedCryptoService.getSymbolById(id);
+        // ids.forEach(id -> {
+        //     String symbol = this.supportedCryptoService.getSymbolById(id);
 
-            log.info(String.format("Syncing price of %s", symbol));
+        //     log.info(String.format("Syncing price of %s", symbol));
 
-            CryptoApiAssetResponse response = this.cryptoApiClient.fetchAssetById(id);
+        //     CryptoApiAssetResponse response = this.cryptoApiClient.fetchAssetById(id);
 
-            Item responseItem = response.getData().getItem();
+        //     Item responseItem = response.getData().getItem();
 
-            CryptoCurrency currency = this.createCurrency(responseItem);
-            this.cryptoRepository.saveCrypto(currency);
+        //     CryptoCurrency currency = this.createCurrency(responseItem);
+        //     this.cryptoRepository.saveCrypto(currency);
 
-            CryptoPrice price = this.createPrice(responseItem);
-            this.cryptoRepository.savePrice(price);
+        //     CryptoPrice price = this.createPrice(responseItem);
+        //     this.cryptoRepository.savePrice(price);
 
-            // Crypto Image is saved only once
-            if (!this.cryptoRepository.cryptoHasImage(id)) {
-                CryptoImage image = this.createImage(responseItem);
-                this.cryptoRepository.saveImage(image);
-            }
+        //     // Crypto Image is saved only once
+        //     if (!this.cryptoRepository.cryptoHasImage(id)) {
+        //         CryptoImage image = this.createImage(responseItem);
+        //         this.cryptoRepository.saveImage(image);
+        //     }
 
-            log.info(String.format("Synced price of %s successfully", symbol));
+        //     log.info(String.format("Synced price of %s successfully", symbol));
 
-            try {
-                Thread.sleep(100); // small delay to avoid rate-limit
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-            }
-        });
+        //     try {
+        //         Thread.sleep(100); // small delay to avoid rate-limit
+        //     } catch (InterruptedException e) {
+        //         Thread.currentThread().interrupt();
+        //     }
+        // });
     }
 
     private CryptoCurrency createCurrency(Item cryptoItem) {
