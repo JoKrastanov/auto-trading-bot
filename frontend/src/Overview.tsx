@@ -1,4 +1,4 @@
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Grid, Paper, Typography } from "@mui/material";
 import PersonIcon from "@mui/icons-material/Person";
 import ShowChartIcon from "@mui/icons-material/ShowChart";
 import PsychologyIcon from "@mui/icons-material/Psychology";
@@ -20,21 +20,69 @@ function Overview() {
       }}
     >
       <Link to="/account">
-        <Box>
-          <PersonIcon sx={{ fontSize: 160 }} />
-          <Typography variant="h4">Account</Typography>
+        <Box
+          sx={{
+            transition: "transform 0.2s",
+            "&:hover": {
+              transform: "scale(1.05)",
+              boxShadow: 3,
+            },
+          }}
+        >
+          <Paper
+            elevation={4}
+            sx={{
+              p: 6,
+              borderRadius: 3,
+            }}
+          >
+            <PersonIcon sx={{ fontSize: 160 }} />
+            <Typography variant="h4">Account</Typography>
+          </Paper>
         </Box>
       </Link>
       <Link to="/crypto">
-        <Box>
-          <ShowChartIcon sx={{ fontSize: 160 }} />
-          <Typography variant="h4">Coins</Typography>
+        <Box
+          sx={{
+            transition: "transform 0.2s",
+            "&:hover": {
+              transform: "scale(1.05)",
+              boxShadow: 3,
+            },
+          }}
+        >
+          <Paper
+            elevation={4}
+            sx={{
+              p: 6,
+              borderRadius: 3,
+            }}
+          >
+            <ShowChartIcon sx={{ fontSize: 160 }} />
+            <Typography variant="h4">Coins</Typography>
+          </Paper>
         </Box>
       </Link>
       <Link to="/">
-        <Box>
-          <PsychologyIcon sx={{ fontSize: 160 }} />
-          <Typography variant="h4">Trade Bot</Typography>
+        <Box
+          sx={{
+            transition: "transform 0.2s",
+            "&:hover": {
+              transform: "scale(1.05)",
+              boxShadow: 3,
+            },
+          }}
+        >
+          <Paper
+            elevation={4}
+            sx={{
+              p: 6,
+              borderRadius: 3,
+            }}
+          >
+            <PsychologyIcon sx={{ fontSize: 160 }} />
+            <Typography variant="h4">Trade Bot</Typography>
+          </Paper>
         </Box>
       </Link>
     </Grid>

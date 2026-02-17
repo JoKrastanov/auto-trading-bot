@@ -27,6 +27,13 @@ export const AccountProvider = ({ children }: Props) => {
     fetchBalance();
   }, [accountId]);
 
+  useEffect(() => {
+    const stored = localStorage.getItem("accountId");
+    if (stored) {
+      setAccountId(Number(stored));
+    }
+  }, []);
+
   return (
     <AccountContext.Provider
       value={{

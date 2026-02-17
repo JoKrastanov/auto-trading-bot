@@ -1,12 +1,11 @@
 import { Box, Typography, Button } from "@mui/material";
-import { useEffect } from "react";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import { createNewAccount } from "../api/Account";
 import AccountDashboard from "./AccountDashboard";
 import { useAccount } from "../provider/account/useAccount";
 
 function AccountDetails() {
-    const { accountId, setAccountId } = useAccount();
+  const { accountId, setAccountId } = useAccount();
 
   function createAccount() {
     createNewAccount().then((newAccId) => {
@@ -15,19 +14,14 @@ function AccountDetails() {
     });
   }
 
-  useEffect(() => {
-    const stored = localStorage.getItem("accountId");
-    if (stored) {
-      setAccountId(Number(stored));
-    }
-  }, []);
-
   return (
     <Box
+      p={2}
       sx={{
+        textAlign: "center",
+        minHeight: "100vh",
         display: "flex",
         flexDirection: "column",
-        justifyContent: "center",
       }}
     >
       <Typography variant="h2" gutterBottom>

@@ -29,7 +29,7 @@ function CryptoSummaryList() {
           display: "grid",
           gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
           justifyItems: "center",
-          maxWidth: 1200,
+          maxWidth: 1400,
           margin: "0 auto",
         }}
       >

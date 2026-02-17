@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Paper, Typography } from "@mui/material";
 import { CryptoSummary } from "../models/CryptoSummary";
 import { Link } from "react-router-dom";
 
@@ -14,12 +14,8 @@ function CryptoSummaryItem(props: CryptoSummaryItemProps) {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          p: 2,
           m: 1,
-          borderRadius: 2,
           cursor: "pointer",
-          border: "1px solid",
-          borderColor: "divider",
           width: 200,
           textAlign: "center",
           transition: "transform 0.2s",
@@ -29,15 +25,23 @@ function CryptoSummaryItem(props: CryptoSummaryItemProps) {
           },
         }}
       >
-        <img
-          className="crypto"
-          src={`data:image/png;base64,${props.cryptoSummary.imageData}`}
-          alt={props.cryptoSummary.symbol}
-        />
-        <Typography variant="body1">{props.cryptoSummary.name}</Typography>
-        <Typography variant="body1">
-          ${props.cryptoSummary.latestPrice}
-        </Typography>
+        <Paper
+          elevation={4}
+          sx={{
+            p: 6,
+            borderRadius: 2,
+          }}
+        >
+          <img
+            className="crypto"
+            src={`data:image/png;base64,${props.cryptoSummary.imageData}`}
+            alt={props.cryptoSummary.symbol}
+          />
+          <Typography variant="body1">{props.cryptoSummary.name}</Typography>
+          <Typography variant="body1">
+            ${props.cryptoSummary.latestPrice}
+          </Typography>
+        </Paper>
       </Box>
     </Link>
   );

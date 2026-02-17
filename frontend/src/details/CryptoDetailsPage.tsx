@@ -17,56 +17,65 @@ function CryptoDetailsPage() {
     return <>Loading...</>;
   }
   return (
-    <Card sx={{ maxWidth: 600, mx: "auto", mt: 4 }}>
-      <CardContent>
-        <Stack spacing={3}>
-          <Stack direction="row" spacing={2} alignItems="center">
-            <Box
-              component="img"
-              src={`data:image/png;base64,${crypto.imageData}`}
-              sx={{ width: 64, height: 64 }}
-            />
-            <Box>
-              <Typography variant="h5">{crypto.name}</Typography>
-              <Typography color="text.secondary">{crypto.symbol}</Typography>
-            </Box>
-          </Stack>
+    <Box
+      p={2}
+      sx={{
+        textAlign: "center",
+        minHeight: "100vh",
+      }}
+    >
+      <Typography variant="h2" gutterBottom>
+        Crypto Overview
+      </Typography>
+      <Card sx={{ maxWidth: 600, mx: "auto", mt: 4 }}>
+        <CardContent>
+          <Stack spacing={3}>
+            <Stack direction="row" spacing={2} alignItems="center">
+              <Box
+                component="img"
+                src={`data:image/png;base64,${crypto.imageData}`}
+                sx={{ width: 64, height: 64 }}
+              />
+              <Box>
+                <Typography variant="h5">{crypto.name}</Typography>
+                <Typography color="text.secondary">{crypto.symbol}</Typography>
+              </Box>
+            </Stack>
 
-          <Box>
-            <Typography variant="h4">
-              ${crypto.latestPriceUsd}
-            </Typography>
-          </Box>
+            <Box>
+              <Typography variant="h4">${crypto.latestPriceUsd}</Typography>
+            </Box>
 
-          <Stack direction="row" spacing={4} justifyContent="center">
-            <Box>
-              <Typography variant="caption">1h</Typography>
-              <PercentChange value={crypto.percentagePriceChangeLastHour} />
-            </Box>
-            <Box>
-              <Typography variant="caption">24h</Typography>
-              <PercentChange value={crypto.percentagePriceChangeLastDay} />
-            </Box>
-            <Box>
-              <Typography variant="caption">7d</Typography>
-              <PercentChange value={crypto.percentagePriceChangeLastWeek} />
-            </Box>
-          </Stack>
+            <Stack direction="row" spacing={4} justifyContent="center">
+              <Box>
+                <Typography variant="caption">1h</Typography>
+                <PercentChange value={crypto.percentagePriceChangeLastHour} />
+              </Box>
+              <Box>
+                <Typography variant="caption">24h</Typography>
+                <PercentChange value={crypto.percentagePriceChangeLastDay} />
+              </Box>
+              <Box>
+                <Typography variant="caption">7d</Typography>
+                <PercentChange value={crypto.percentagePriceChangeLastWeek} />
+              </Box>
+            </Stack>
 
-          <Stack spacing={1}>
-            <Typography>
-              Market Cap: ${crypto.marketCapUsd.toLocaleString()}
-            </Typography>
-            <Typography>
-              Circulating Supply: {crypto.circulatingSupply.toLocaleString()}
-            </Typography>
-            <Typography>
-              Max Supply: {crypto.maxSupply?.toLocaleString() || "N/A"}
-            </Typography>
+            <Stack spacing={1}>
+              <Typography>
+                Market Cap: ${crypto.marketCapUsd.toLocaleString()}
+              </Typography>
+              <Typography>
+                Circulating Supply: {crypto.circulatingSupply.toLocaleString()}
+              </Typography>
+              <Typography>
+                Max Supply: {crypto.maxSupply?.toLocaleString() || "N/A"}
+              </Typography>
+            </Stack>
           </Stack>
-        </Stack>
-      </CardContent>
-    </Card>
+        </CardContent>
+      </Card>
+    </Box>
   );
 }
 
